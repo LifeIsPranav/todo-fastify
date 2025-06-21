@@ -1,12 +1,16 @@
-const fastify = require('fastify')({ logger: true })  // Root Application Instance
+const fastify = require('fastify')({ logger: true, http2: true })  // Root Application Instance
 
-fastify.addHook('onReady', function listener(done) {
-  console.log('Server is Ready to Take Request')
-  done()
+fastify.get('/ping', (req, res) => {
+  // console.log(req)
+  return "pong"
 })
 
-fastify.addHook('onClose', function listener(done) {
-  console.log('Server is Stopping') 
+fastify.route({
+  url: '/hello',
+  method: 'GET',
+  handler: function() {
+    return 'world'
+  }
 })
 
 const PORT = 8080
