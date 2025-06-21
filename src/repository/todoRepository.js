@@ -5,19 +5,29 @@ class TodoRepository {
     this.db = db
   }
 
-  getAll() {
+  async getAll() {
+    return this.db.todos
+  }
+
+  async create(todoText) {
+    const todoList = this.db.todos
+    this.db.todos.push({
+      text: todoText,
+      id: todoList.length
+    })
+
+    return this.db.todos
+  }
+
+  async getOne(id) {
+    return this.db.todos.find(todo => todo.id == id)
+  }
+
+  async deleteOne(id) {
 
   }
 
-  getOne(id) {
-
-  }
-
-  deleteOne(id) {
-
-  }
-
-  deleteAll() {
+  async deleteAll() {
 
   }
 }

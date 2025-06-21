@@ -5,19 +5,23 @@ class TodoService {
     this.todoRepository = todoRepository
   }
 
-  getAll() {
+  async getAll() {
     return this.todoRepository.getAll()
   }
+
+  async create(todoText) {
+    return await this.todoRepository.create(todoText)
+  }
   
-  getOne(id) {
+  async getOne(id) {
     return this.todoRepository.getOne(id)
   }
 
-  deleteOne(id) {
+  async deleteOne(id) {
     return this.todoRepository.deleteOne(id)
   }
   
-  deleteAll() {
+  async deleteAll() {
     return this.todoRepository.deleteAll
   }
 }
@@ -28,4 +32,4 @@ async function todoService(fastify, options) {
   fastify.decorate('todoService', service)
 }
 
-module.exports = fp(todoRepository)
+module.exports = fp(todoService)
