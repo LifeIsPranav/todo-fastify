@@ -14,10 +14,6 @@ async function start() {
   try {
     await fastify.listen({ port: PORT })
     console.log(`Server is Up on PORT: ${PORT}`)
-
-    await setTimeout(() => {
-      fastify.close()
-    }, 5000)
   } catch (error) {
     console.log(error)
   }
