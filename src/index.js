@@ -1,14 +1,20 @@
-const fastify = require('fastify')({ logger: true, http2: true })  // Root Application Instance
+const fastify = require('fastify')({ logger: true })  // Root Application Instance
 
 fastify.get('/ping', (req, res) => {
-  // console.log(req)
-  return "pong"
+  console.log("*******************************")
+  console.log(this)
+  console.log("*******************************")
+  
+  return 'pong'
 })
 
 fastify.route({
   url: '/hello',
   method: 'GET',
   handler: function() {
+    console.log("*******************************")
+    console.log(this)
+    console.log("*******************************")
     return 'world'
   }
 })
