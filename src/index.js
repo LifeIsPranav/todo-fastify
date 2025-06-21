@@ -11,13 +11,26 @@ fastify.get('/ping', (req, res) => {
 fastify.route({
   url: '/hello',
   method: 'GET',
-  handler: function() {
+  handler: function(req, res) {
     console.log("*******************************")
-    console.log(this)
+    console.log(req.body)
+    console.log("*******************************")
+    console.log(fastify)
+    console.log("*******************************")
+    console.log(this.key)
     console.log("*******************************")
     return 'world'
   }
 })
+
+function samplePlugin(fastify, options, done) {
+  console.log('Executing my plugin')
+  fastify.decorate('key', 'value')
+  console.log(fastify)
+  done()
+}
+
+fastify.register(samplePlugin, {})
 
 const PORT = 8080
 async function start() {
